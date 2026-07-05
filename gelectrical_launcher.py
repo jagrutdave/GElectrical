@@ -42,6 +42,17 @@ if sys.stdout is None:
 if sys.stderr is None:
     sys.stderr = NullWriter()
 
+# NumPy 2.x compatibility shim.
+# NumPy 2.0 removed several long-deprecated aliases (Inf, NaN, ...) that
+# pandapower and other dependencies still import. Restore them before any
+# dependency is imported so the app launches under a NumPy 2.x runtime.
+import numpy as _np
+for _old, _val in (('Inf', _np.inf), ('Infinity', _np.inf), ('infty', _np.inf),
+                   ('PINF', _np.inf), ('NINF', -_np.inf),
+                   ('NaN', _np.nan), ('NAN', _np.nan)):
+    if not hasattr(_np, _old):
+        setattr(_np, _old, _val)
+
 from gelectrical import MainApp, misc
 
 if __name__ == '__main__':
