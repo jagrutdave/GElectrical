@@ -1,15 +1,10 @@
-
 *.pyc
 *.glade~
 .flatpak-builder/*
 reference/*
-.flatpak-builder/*
 build-dir/*
 repo/*
 pvenv/*
 gelectrical.flatpak
 build/*
 dist/*
-run.bat
-run.ps1
-
