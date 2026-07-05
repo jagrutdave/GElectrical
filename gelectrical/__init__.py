@@ -940,6 +940,7 @@ class MainWindow():
         self.program_state['element_models'][line.Line.code] = line.Line
         self.program_state['element_models'][line.LTCableIEC.code] = line.LTCableIEC
         self.program_state['element_models'][line.LTCableCustom.code] = line.LTCableCustom
+        self.program_state['element_models'][line.LTCableLVIS.code] = line.LTCableLVIS
         self.program_state['element_models'][line.BusTrunking.code] = line.BusTrunking
         self.program_state['element_models'][impedance.Impedance.code] = impedance.Impedance
         self.program_state['element_models'][impedance.Inductance.code] = impedance.Inductance

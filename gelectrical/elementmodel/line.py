@@ -1250,6 +1250,31 @@ Use this element for overhead lines where parameters of the line are not known b
         self.calculate_damage_curve()
 
 
+class LTCableLVIS(Line):
+    """LV XLPE cable element with catalogue (IS:7098 Part-1) parameters"""
+
+    code = 'element_line_lv_is'
+    name = 'LV Cable (IS:7098)'
+    group = 'Components'
+    icon = misc.abs_path('icons', 'line.svg')
+    tooltip = """<b>LV Cable (IS:7098 Part-1)</b>
+
+Creates a low voltage (650/1100 V) XLPE insulated cable element with parameters taken directly from an IS:7098 Part-1 manufacturer catalogue (Polycab LT XLPE).
+
+Pick the cable from the built-in library; the resistance, reactance, capacitance, current rating and short-circuit rating are populated for the selected conductor material, number of cores and installation method (In Ground / In Air / In Duct).
+"""
+
+    def __init__(self, cordinates=(0,0), **kwargs):
+        # Global
+        Line.__init__(self, cordinates, **kwargs)
+        self.database_path = misc.open_library('line_lv_is.csv')
+        # Catalogue cables are XLPE, buried by default, run at 90 degC
+        self.fields['insulation_material']['value'] = 'XLPE/EPR'
+        self.fields['type']['value'] = 'Under Ground'
+        self.fields['working_temp_degree']['value'] = 90
+        self.fields['endtemp_degree']['value'] = 250
+
+
 class BusTrunking(Line):
     """Cable element"""
 
