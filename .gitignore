@@ -10,5 +10,6 @@ pvenv/*
 gelectrical.flatpak
 build/*
 dist/*
-
+run.bat
+run.ps1
 
